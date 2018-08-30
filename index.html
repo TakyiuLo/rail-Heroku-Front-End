@@ -1,54 +1,70 @@
 <!DOCTYPE html>
 <html>
-    <head>
+   <head>
       <title>Example</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
+   </head>
+   <body>
       <div class="state-credientials">
-        <h1>Bookmarks</h1>
-        <div id="signUp" class="form">
-          Sign Up
-          <form id="sign-up" class="">
-             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-                <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
-             </div>
-             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
-             </div>
-             <div class="input-group">
-                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-             </div>
-             <div class="input-group sign-up-button">
-                <button class="btn btn--form" type="submit">Register</button>
-             </div>
-          </form>
+         <h1>Bookmarks</h1>
+         <h4 class="message"></h4>
+         <form id="sign-up" class="form">
+            <legend>Sign Out</legend>
+            <div class="input-group">
+               <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+               <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
+            </div>
+            <div class="input-group">
+               <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+               <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
+            </div>
+            <div class="input-group">
+               <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+               <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+            </div>
+            <div class="input-group sign-up-button">
+               <button class="btn btn--form" type="submit">Register</button>
+            </div>
+         </form>
+         <form id="sign-in" class="form">
+            <legend>Sign In</legend>
+            <div class="input-group">
+               <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+               <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
+            </div>
+            <div class="input-group">
+               <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+               <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
+            </div>
+            <div class="input-group sign-in-button">
+               <button class="btn btn--form" type="submit">Login</button>
+            </div>
+         </form>
       </div>
-      <div id="signIn" class="form">
-        Sign In
-        <form id="sign-in" class="">
-           <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-              <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
-           </div>
-           <div class="input-group">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-              <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
-           </div>
-           <div class="input-group sign-in-button">
-              <button class="btn btn--form" type="submit">Login</button>
-           </div>
-        </form>
-     </div>
-    </body>
+      <div class="state-bookmarks">
+         <div class="sign-out">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            <a id="sign-out" type="button">Sign out</a>
+         </div>
+         <form id="change-password" class="form">
+            <legend>Change Password</legend>
+            <div class="input-group">
+               <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+               <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
+            </div>
+            <div class="input-group">
+               <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+               <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
+            </div>
+            <div class="input-group change-password-button">
+               <button class="btn btn--form" type="submit">Submit</button>
+            </div>
+         </form>
+      </div>
+   </body>
 </html>

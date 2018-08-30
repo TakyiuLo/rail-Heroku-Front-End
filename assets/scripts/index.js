@@ -1,6 +1,6 @@
 'use strict'
 
-const authApp = require('./auth/app')
+const authApp = require('./auth/event')
 
 $(() => {
   authApp.addHandlers()
