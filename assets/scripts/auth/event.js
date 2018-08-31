@@ -3,6 +3,7 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const store = require('../store.js')
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -13,11 +14,17 @@ const onSignUp = function (event) {
     .catch(ui.signUpFail)
 }
 
+const onSignInSuccess = (response) => {
+  store.user = response.user
+  store.loadBookmarks()
+}
+
 const onSignIn = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
 
   api.signIn(data)
+    .then(onSignInSuccess)
     .then(ui.signInSuccess)
     .catch(ui.signInFail)
 }

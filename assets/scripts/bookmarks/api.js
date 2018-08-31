@@ -1,0 +1,55 @@
+'use strict'
+
+const config = require('../config.js')
+const store = require('../store.js')
+
+const requestIndex = function () {
+  return $.ajax({
+    url: config.apiUrl + '/bookmarks',
+    method: 'GET',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    }
+  })
+}
+
+const requestCreate = function (data) {
+  return $.ajax({
+    url: config.apiUrl + '/bookmarks',
+    method: 'POST',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
+const requestUpdate = function (data, id) {
+  return $.ajax({
+    url: config.apiUrl + '/bookmarks/' + id,
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
+const requestDelete = function (id) {
+  // console.log('store in signOut', store)
+  // console.log(config.apiUrl)
+  return $.ajax({
+    url: config.apiUrl + '/bookmarks/' + id,
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    }
+  })
+}
+
+module.exports = {
+  requestIndex,
+  requestCreate,
+  requestUpdate,
+  requestDelete
+}

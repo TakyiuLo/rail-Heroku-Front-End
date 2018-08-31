@@ -1,44 +1,45 @@
 'use strict'
 
-const store = require('../store.js')
-
 const signUpSuccess = function () {
-  $('.message').text('Successfully Sign Up')
+  $('.auth-message').text('Successfully Sign Up')
   $('#sign-up input').val('')
 }
 
 const signUpFail = function () {
-  $('.message').text('Failed to Sign Up')
+  $('.auth-message').text('Failed to Sign Up')
   $('#sign-up input').val('')
 }
 
 const signInSuccess = function (response) {
-  store.user = response.user
-  $('.message').text('Login Successfully')
+  $('.auth-message').text('Login Successfully')
   $('#sign-in input').val('')
+  $('.state-credientials').addClass('hidden')
+  $('.state-bookmarks').removeClass('hidden')
 }
 
 const signInFail = function () {
-  $('.message').text('Failed to Login')
+  $('.auth-message').text('Failed to Login')
   $('#sign-in input').val('')
 }
 
 const changePasswordSuccess = function () {
-  $('.message').text('Password Changed')
+  $('.auth-message').text('Password Changed')
   $('#change-password input').val('')
 }
 
 const changePasswordFail = function () {
-  $('.message').text('Failed to Change Password')
+  $('.auth-message').text('Failed to Change Password')
   $('#change-password input').val('')
 }
 
 const signOutSuccess = function () {
-  $('.message').text('Signed Out')
+  $('.auth-message').text('Signed Out')
+  $('.state-credientials').removeClass('hidden')
+  $('.state-bookmarks').addClass('hidden')
 }
 
 const signOutFail = function () {
-  $('.message').text('Failed to Sign Out')
+  $('.auth-message').text('Failed to Sign Out')
 }
 
 module.exports = {

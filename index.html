@@ -2,7 +2,7 @@
 <html>
    <head>
       <title>Example</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
       <!-- Do not add `script` tags-->
@@ -12,7 +12,7 @@
    <body>
       <div class="state-credientials">
          <h1>Bookmarks</h1>
-         <h4 class="message"></h4>
+         <h4 class="auth-message"></h4>
          <form id="sign-up" class="form">
             <legend>Sign Out</legend>
             <div class="input-group">
@@ -46,7 +46,10 @@
             </div>
          </form>
       </div>
-      <div class="state-bookmarks">
+      <div class="state-bookmarks hidden">
+         <h1>Bookmarks</h1>
+         <h4 class="auth-message"></h4>
+         <h5 class="bookmark-crud-message"></h5>
          <div class="sign-out">
             <span class="glyphicon glyphicon-arrow-left"></span>
             <a id="sign-out" type="button">Sign out</a>
@@ -65,6 +68,29 @@
                <button class="btn btn--form" type="submit">Submit</button>
             </div>
          </form>
+         <!-- Bookmarks -->
+         <div class="bookmarks"></div>
+         <button type="button" class="add-bookmark-btn btn">New Bookmark</button>
+
+         <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="removeModalLabel">Remove Bookmark</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                     <button type="button" class="btn btn-primary">Yes</button>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </body>
 </html>
