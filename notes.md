@@ -25,3 +25,17 @@ object stored in the `grunt` directory.
 
 **Note:** developers who add link tags should be firmly reminded to follow
 directions
+
+## Linux Troubleshooting
+
+Very rarely, `package-lock.json` can cause a problem for Linux users. If
+`npm install` is failing on Linux or developers are seeing errors related to
+missing dependencies or modules, they should:
+
+```
+git rm package-lock.json
+rm -rf node_modules
+npm install
+git add package-lock.json
+git commit
+```

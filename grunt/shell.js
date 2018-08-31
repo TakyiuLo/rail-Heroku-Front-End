@@ -1,5 +1,16 @@
 'use strict'
 
+// This command will check if `.gitignore` exists, and ensure that git isn't
+// tracking `node_modules`. If both of the above are true, the deploy will
+// proceed. If `.gitingore` is missing or `node_modules` is tracked, it will
+// exit with a message telling them to seek adult supervision
+const checkGitIgnore = `
+ if !(git ls-files --error-unmatch node_modules) && [ -f .gitignore ];
+   then true;
+   else printf "\n\nWARNING: .gitignore is wrong or missing.
+   Ask an instructor for assistance!\n\n" && false; fi
+`
+
 const ghPagesList = [
   'index.html',
   'favicon.ico',
@@ -7,6 +18,9 @@ const ghPagesList = [
 ].join(' ')
 
 module.exports = {
+  'check-gitignore': {
+    command: checkGitIgnore
+  },
   'git-is-clean': {
     // `$(git status --porcelain)` will evaluate to the empty string if the
     // working directory is clean.
@@ -16,7 +30,9 @@ module.exports = {
     command: 'test -z "$(git status --porcelain)"  || (git status && false)'
   },
   'git-push-master': {
-    command: 'git push origin master'
+    // if the push to master fails, we want to delete any files that were created
+    // by the build process and exit all remaining build steps
+    command: 'git push origin master || (git clean -f && false)'
   },
   'git-checkout-master': {
     command: 'git checkout master'

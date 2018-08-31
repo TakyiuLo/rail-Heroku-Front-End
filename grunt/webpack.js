@@ -7,8 +7,7 @@ module.exports = {
   options: {
     entry: {
       application: './index.js',
-      specs: './spec/_all.js',
-      vendor: ['jquery', 'bootstrap-sass']
+      vendor: ['jquery']
     },
 
     output: {
@@ -43,23 +42,35 @@ module.exports = {
           test: /\.css$/,
           use: [
             { loader: 'style-loader' },
-            { loader: 'css-loader' }
+            { loader: 'css-loader?url=false' }
           ]
         },
         {
           test: /\.scss$/,
           use: [
             { loader: 'style-loader' },
-            { loader: 'css-loader' },
+            { loader: 'css-loader',
+              options: {
+                url: false
+              }
+            },
             {
+              loader: 'postcss-loader', // Run post css actions
+              options: {
+                plugins: function () { // post css plugins, can be exported to postcss.config.js
+                  return [
+                    require('autoprefixer')
+                  ]
+                }
+              }
+            }, {
               loader: 'sass-loader',
               options: {
                 includePaths: [
                   path.resolve(__dirname, './node_modules')
                 ]
               }
-            }
-          ]
+            }]
         },
         {
           test: /\.woff[\d]?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
