@@ -1,0 +1,60 @@
+.form {
+  display: inline-block;
+  margin: 10px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 2px #ccc;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 30px;
+  &:hover {
+    box-shadow: 0 2px 2px rgba(180, 180, 180, .4);
+    transform: scale3d(1.005, 1.005, 1.005);
+  }
+  & legend {
+    text-align: center;
+  }
+  & .input-group-prepend {
+    margin-top: 10px;
+    margin-bottom: 1px;
+  }
+  & .input-group-text {
+    background-color: #fff;
+    border-radius: 20px;
+  }
+  & input {
+    margin-top: 11px;
+    border-radius: 20px;
+  }
+  & button[type="submit"] {
+    border-radius: 75px;
+    background: linear-gradient(to right, #da4453, #89216b);
+    color: #eee;
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    &:focus {
+      box-shadow: none !important;
+    }
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+      background: linear-gradient(to right, #eb5564, #9a327c);
+      box-shadow: 0 5px 15px rgba(145, 90, 180, .4);
+    }
+  }
+  & button[type="button"] {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    height: 35px;
+    background: transparent;
+    &:focus {
+      box-shadow: none !important;
+    }
+    &:hover {
+      color: #7f7fd5;
+    }
+  }
+}

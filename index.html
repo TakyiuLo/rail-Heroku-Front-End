@@ -1,17 +1,121 @@
 <!DOCTYPE html>
 <html>
-    <head>
+   <head>
       <title>Example</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
+      <link href="assets/src/open-iconic-master/font/css/open-iconic-bootstrap.css" rel="stylesheet">
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
-    <body>
-      <h1>Browser Template</h1>
-    </body>
+   </head>
+   <body>
+      <div class="state-credientials">
+         <h1>Bookmarks</h1>
+         <h4 class="auth-message"></h4>
+         <div class="login-form">
+           <div class="card-container">
+             <div class="card">
+               <form id="sign-up" class="card-face front form">
+                  <legend>Sign Out</legend>
+                  <div class="input-group">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text oi oi-envelope-closed"></span>
+                     </div>
+                     <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text oi oi-lock-locked"></span>
+                    </div>
+                     <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text oi oi-lock-locked"></span>
+                    </div>
+                     <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                  </div>
+                  <div class="input-group sign-up-button">
+                     <button class="btn btn--form" type="submit">Register</button>
+                  </div>
+                  <div class="switch-already-member">
+                    <button type="button" class="btn">Already a member</button>
+                  </div>
+               </form>
+               <form id="sign-in" class="card-face back center form">
+                  <legend>Sign In</legend>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text oi oi-envelope-closed"></span>
+                    </div>
+                     <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text oi oi-lock-locked"></span>
+                    </div>
+                     <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
+                  </div>
+                  <div class="input-group sign-in-button">
+                     <button class="btn btn--form" type="submit">Login</button>
+                  </div>
+                  <div class="switch-non-member">
+                    <button type="button" class="btn">Sign Up</button>
+                  </div>
+               </form>
+             </div>
+           </div>
+         </div>
+      </div>
+      <div class="state-bookmarks d-none">
+         <h1>Bookmarks</h1>
+         <h4 class="auth-message"></h4>
+         <h5 class="bookmark-crud-message"></h5>
+         <div class="sign-out">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            <button id="sign-out" class="btn btn-dark" type="button">Sign out</button>
+         </div>
+         <form id="change-password" class="form">
+            <legend>Change Password</legend>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text oi oi-lock-locked"></span>
+              </div>
+               <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text oi oi-lock-locked"></span>
+              </div>
+               <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
+            </div>
+            <div class="input-group change-password-button">
+               <button class="btn btn--form" type="submit">Submit</button>
+            </div>
+         </form>
+         <!-- Bookmarks -->
+         <div class="bookmarks"></div>
+         <button type="button" class="add-bookmark-btn btn">New Bookmark</button>
+         <div class="modal fade" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="removeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="removeModalLabel">Remove Bookmark</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                     <button type="button" class="btn btn-primary">Yes</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
 </html>

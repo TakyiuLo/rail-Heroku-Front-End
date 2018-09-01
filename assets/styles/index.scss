@@ -1,1 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'form';
+@import 'card';
+@import 'state-credientials';
+
+body {
+  background-color: #eee;
+}

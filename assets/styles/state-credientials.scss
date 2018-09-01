@@ -1,0 +1,21 @@
+// Layout
+
+.state-credientials {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  & h1 {
+    font-size: 15vmin;
+    display: flex;
+    justify-content: center;
+  }
+  & .auth-message {
+    display: flex;
+    justify-content: center;
+  }
+  & .login-form {
+    display: flex;
+    justify-content: center;
+  }
+
+}

@@ -1,0 +1,28 @@
+.card-container {
+  width: 320px;
+  /* activate 3D space */
+  perspective: 800px;
+}
+
+.card {
+  border: none;
+  position: relative;
+  transition: all .4s linear;
+  /* allow child elements to be positioned in 3D space of their own */
+  transform-style: preserve-3d;
+}
+
+.card-face {
+  /* position faces absolutely so that they stack on top of each other */
+  position: absolute;
+  /* prevent the front face from showing through the back */
+  backface-visibility: hidden;
+}
+
+.card .back {
+  transform: rotateY(180deg);
+}
+
+.card.flip {
+  transform: rotateY(180deg);
+}
