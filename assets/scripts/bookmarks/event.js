@@ -11,10 +11,10 @@ const onGetAllBookmarks = () => {
     .catch(ui.requestIndexFail)
 }
 
-const addEmptyBookmark = () => {
+const onCreatePrompt = () => {
   // Create an id for the specify EditBookmarkHtml
   const id = 'empty_form_id_' + ++store.emptyBookmarkNumber
-  ui.addBookmark(id)
+  ui.addBookmarkPrompt(id)
 }
 
 const onCreateBookmark = (event) => {
@@ -33,7 +33,9 @@ const onCreateBookmark = (event) => {
 }
 
 const onRemovePrompt = (event) => {
-  ui.removePrompt($(event.target).parent()[0])
+  if ($(event.target).val() === 'remove') {
+    ui.removePrompt($(event.target).closest('form.remove-btn')[0])
+  }
 }
 
 const onRemoveBookmark = (event) => {
@@ -50,7 +52,7 @@ const onRemoveBookmark = (event) => {
 }
 
 const onEditBookmark = (event) => {
-  ui.editBookmark($(event.target).parent()[0])
+  ui.editBookmark($(event.target).closest('.bookmark')[0])
 }
 
 const onSaveBookmark = (event) => {
@@ -71,8 +73,8 @@ const addHandlers = function () {
   // get all Bookmarks
   store.loadBookmarks = onGetAllBookmarks
   store.emptyBookmarkNumber = 0
-  $('.add-bookmark-btn').on('click', addEmptyBookmark)
-  $('.bookmarks').on('submit', '.create-btn', onCreateBookmark)
+  $('.add-bookmark-btn').on('click', onCreatePrompt)
+  $('#newBookmarkModal').on('submit', '.create-btn', onCreateBookmark)
   $('.bookmarks').on('click', '.remove-btn', onRemovePrompt)
   $('.modal-footer .btn-primary').on('click', onRemoveBookmark)
   $('.bookmarks').on('click', '.edit-btn', onEditBookmark)

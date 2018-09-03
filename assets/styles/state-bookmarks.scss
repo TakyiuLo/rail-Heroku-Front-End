@@ -1,0 +1,60 @@
+// Layout
+@import 'sign-out-button';
+@import 'new-bookmark-form';
+@import 'all-bookmarks';
+@import 'modals';
+
+.state-bookmarks {
+  display: flex;
+  flex-direction: column;
+  & .auth-message {
+    margin: 20px;
+  }
+  & .bookmark-crud-message {
+    margin: 0px;
+    color: red;
+    margin-left: 20px;
+  }
+  & .container-fluid {
+    & .row {
+      background: #ccc;
+      min-width: 300px;
+      & h1 {
+        font-size: 20px;
+        margin: 0px;
+        color: #eee;
+        display: flex;
+        align-items: center;
+      }
+      & .dropdown { // cog
+        padding-right: 0px;
+        & a {
+          background: transparent;
+          color: white;
+          float: right;
+          border: 0px;
+          & span {
+            margin-top: 10px;
+            height: 16px; // limit height to spin at center
+            transition: transform 1s ease-in-out;
+            &:hover {
+              transform: rotate(360deg);
+            }
+          }
+        }
+        & .dropdown-menu {
+          margin-top: -37px;
+          margin-right: 10px;
+          & .change-password {
+            height: 200px;
+          }
+        }
+      }
+    }
+  }
+  & .add-bookmark-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+}

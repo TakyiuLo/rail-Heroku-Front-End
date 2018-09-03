@@ -1,26 +1,29 @@
 <div>
-  <form id="{{bookmark.id}}" class="form create-btn save-btn box">
-     <label for="New Bookmark"></label>
-     <span class="glyphicon glyphicon-bookmark"></span>
-     <div class="input-group">
-        <span class="input-group-addon">Title</span>
-        <input class="form-control" type="text" name="bookmark[title]" placeholder="title" value="{{bookmark.title}}">
-     </div>
-     <div class="input-group">
-        <span class="input-group-addon">URL</span>
-        <input class="form-control" type="text" name="bookmark[url]" placeholder="url" value="{{bookmark.url}}">
-     </div>
-     <div class="input-group">
-        <span class="input-group-addon">Description</span>
-        <input class="form-control" type="text" name="bookmark[description]" placeholder="description" value="{{bookmark.description}}">
-     </div>
-     <div class="input-group">
-        <span class="glyphicon glyphicon-check"></span>
-        {{#if bookmark.title}}
-          <button class="btn btn--form" type="submit" value="save">Save</button>
-        {{else}}
-          <button class="btn btn--form" type="submit" value="create">Add</button>
-        {{/if}}
-     </div>
-  </form>
+   <form id="{{bookmark.id}}" class="form create-btn save-btn remove-btn box">
+      <label for="New Bookmark"></label>
+      <div class="input-group">
+         <span class="input-group-text">Title</span>
+         <input class="form-control title" type="text" name="bookmark[title]" placeholder="header" value="{{bookmark.title}}">
+      </div>
+      <div class="input-group">
+         <span class="input-group-text input-url-label">Url</span>
+         <input class="form-control" type="text" name="bookmark[url]" placeholder="link" value="{{bookmark.url}}">
+      </div>
+      <div class="input-group">
+         <span class="input-group-text">Text</span>
+         <input class="form-control" type="text" name="bookmark[description]" placeholder="description" value="{{bookmark.description}}">
+      </div>
+      <div class="input-group">
+         {{#if bookmark.title}}
+         <button class="btn btn--form" type="submit" value="save">Save</button>
+         {{else}}
+         <button class="btn btn--form" type="submit" value="create">Add</button>
+         {{/if}}
+      </div>
+      {{#if bookmark.title}}
+      <div class="input-group">
+         <button class="btn remove-btn" type="button" value="remove">Remove</button>
+      </div>
+      {{/if}}
+   </form>
 </div>

@@ -5,55 +5,72 @@ const bookmarkTemplate = require('../templates/bookmark-template.handlebars')
 const EditbookmarkTemplate = require('../templates/edit-bookmark-template.handlebars')
 const bookmarkTitleTemplate = require('../templates/bookmark-title-template.handlebars')
 
+const messageModal = (message, status) => {
+  $('#messageModal .modal-body').text(message)
+  $('#messageModal').modal('toggle')
+  $('#messageModal').attr('status', status)
+  setTimeout(() => {
+    $('#messageModal').modal('toggle')
+  }, 1500)
+}
+
 const requestIndexSuccess = function (response) {
-  console.log(response)
+  // console.log(response)
   const showBookmarksHtml = showBookmarksTemplate({bookmarks: response.bookmarks})
   $('.bookmarks').html(showBookmarksHtml)
+  // $('.bookmark-crud-message').text('All are revealed')
+  messageModal('Reveal All', 'success')
 }
 
 const requestIndexFail = function (response) {
-  console.log('Fail to get all bookmarks')
+  // $('.bookmark-crud-message').text('Fail to show all bookmarks')
+  messageModal('Fail to reveal', 'fail')
 }
 
-const addBookmark = (id) => {
+const addBookmarkPrompt = (id) => {
+  $('#newBookmarkModal').modal('toggle')
   const EditBookmarkHtml = EditbookmarkTemplate({
     bookmark: {
       id: id
     }
   })
-  $('.bookmarks').append(EditBookmarkHtml)
+  $('#newBookmarkModal').find('.modal-body').html(EditBookmarkHtml)
 }
 
 const requestCreateSuccess = (response, id) => {
   const bookmarkHtml = bookmarkTemplate(response.bookmark)
   $('.bookmarks').append(bookmarkHtml)
   $('#' + id).remove()
-  $('.bookmark-crud-message').text('Saved')
+  $('#newBookmarkModal').modal('toggle')
+  // $('.bookmark-crud-message').text('Saved')
+  messageModal('Saved', 'success')
 }
 
 const requestCreateFail = (response) => {
-
+  // $('.bookmark-crud-message').text('Fail to create bookmark')
+  messageModal('Fail to create', 'fail')
 }
 
 const requestDeleteSuccess = (response, id) => {
   // console.log('id: ', id)
   $('#' + id).remove()
-  $('.bookmark-crud-message').text('Bookmark Removed')
   $('#removeModal').modal('toggle')
+  // $('.bookmark-crud-message').text('Bookmark Removed')
+  messageModal('Deleted', 'success')
 }
 
 const requestDeleteFail = (response) => {
-
+  // $('.bookmark-crud-message').text('Fail to remove bookmark')
+  messageModal('Fail to remove', 'fail')
 }
 
 const removePrompt = (target) => {
   $('#removeModal').modal('toggle')
-  console.log(target)
   const data = bookmarkTitleTemplate({
     id: target.id,
-    title: $('#' + target.id + ' a big').text()
+    title: $('#' + target.id).find('.title').val()
   })
-  $('.modal-body').html('Are you sure to remove this bookmark? ' + data)
+  $('#removeModal').find('.modal-body').html('Are you sure to remove this bookmark? ' + data)
 }
 
 const editBookmark = (target) => {
@@ -61,9 +78,9 @@ const editBookmark = (target) => {
   const EditBookmarkHtml = EditbookmarkTemplate({
     bookmark: {
       id: target.id,
-      title: $('#' + target.id + ' a big').text(),
-      url: $('#' + target.id + ' a').attr('href'),
-      description: $('#' + target.id + ' p').text()
+      title: $('#bookmark-title-' + target.id).text(),
+      url: $('#bookmark-title-' + target.id).attr('href'),
+      description: $('#bookmark-description-' + target.id).text()
     }
   })
   $('#' + target.id).replaceWith(EditBookmarkHtml)
@@ -71,19 +88,20 @@ const editBookmark = (target) => {
 
 const requestUpdateSuccess = (response, id) => {
   const bookmarkHtml = bookmarkTemplate(response.bookmark)
-  $('.bookmarks').append(bookmarkHtml)
-  $('#' + id).remove()
-  $('.bookmark-crud-message').text('Saved')
+  $('#' + id).replaceWith(bookmarkHtml)
+  // $('.bookmark-crud-message').text('Saved')
+  messageModal('Saved', 'success')
 }
 
 const requestUpdateFail = (response) => {
-
+  // $('.bookmark-crud-message').text('Fail to save')
+  messageModal('Fail to save', 'fail')
 }
 
 module.exports = {
   requestIndexSuccess,
   requestIndexFail,
-  addBookmark,
+  addBookmarkPrompt,
   requestCreateSuccess,
   requestCreateFail,
   requestDeleteSuccess,

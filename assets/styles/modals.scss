@@ -1,0 +1,58 @@
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 360px;
+  max-width: 360px;
+  min-height: 500px;
+}
+
+#removeModal {
+  & .modal-header {
+    background: #d9534f;
+    color: #eee;
+  }
+  & .modal-footer {
+    & .btn-primary {
+      background-color: #c9302c;
+      border: 0;
+    }
+  }
+}
+
+#messageModal {
+  min-width: auto;
+  max-width: auto;
+  width: auto;
+  min-height: 0;
+  height: 100px;
+  left: 50%;
+  top: 5%;
+  & .modal-dialog{
+    position: relative;
+    display: table; /* This is important */
+    overflow-y: auto;
+    overflow-x: auto;
+    width: auto;
+    min-width: auto;
+  }
+  &[status='normal'] { // normal gray
+    & .modal-body {
+      background: #333;
+      color: #eee;
+    }
+  }
+  &[status='success'] { // success green
+    & .modal-body {
+      background: rgb(195, 230, 203);
+      color: rgb(21, 87, 36);
+    }
+  }
+  &[status='fail'] { // failure red
+    & .modal-body {
+      background: rgb(245, 198, 203);
+      color: rgb(114, 28, 36);
+    }
+  }
+}

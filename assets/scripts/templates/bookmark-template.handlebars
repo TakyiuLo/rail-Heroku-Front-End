@@ -1,5 +1,9 @@
-<div id="{{this.id}}">
-  {{> bookmark-data-template this}}
-  <button type="button" class="btn edit-btn">Edit</button>
-  <button type="button" class="btn remove-btn">Remove</button>
+<div id="{{this.id}}" class="bookmark">
+  <div class="bookmark-header" data-toggle="collapse" data-target="#bookmark-description-{{this.id}}" aria-expanded="false" aria-controls="collapseExample">
+    {{> bookmark-data-template this}}
+    <button type="button" class="btn edit-btn">
+      <span class="oi oi-menu"></span>
+    </button>
+  </div>
+  <div id="bookmark-description-{{this.id}}" class="collapse description">{{this.description}}</div>
 </div>

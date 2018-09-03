@@ -70,31 +70,41 @@
          </div>
       </div>
       <div class="state-bookmarks d-none">
-         <h1>Bookmarks</h1>
+        <div class="container-fluid">
+          <div class="row">
+            <h1 class="col-6">Bookmarks</h1>
+            <div class="dropdown col-6">
+              <a class="btn btn-secondary btn-lg" id="accountButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="oi oi-cog"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountButton">
+                <form id="change-password" class="form change-password dropdown-item">
+                   <legend>Change Password</legend>
+                   <div class="input-group">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text oi oi-lock-locked"></span>
+                     </div>
+                      <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
+                   </div>
+                   <div class="input-group">
+                     <div class="input-group-prepend">
+                       <span class="input-group-text oi oi-lock-locked"></span>
+                     </div>
+                      <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
+                   </div>
+                   <div class="input-group change-password-button">
+                      <button class="btn btn--form" type="submit">Submit</button>
+                   </div>
+                </form>
+                <button id="sign-out" class="sign-out dropdown-item" type="button">Sign out</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
          <h4 class="auth-message"></h4>
          <h5 class="bookmark-crud-message"></h5>
-         <div class="sign-out">
-            <span class="glyphicon glyphicon-arrow-left"></span>
-            <button id="sign-out" class="btn btn-dark" type="button">Sign out</button>
-         </div>
-         <form id="change-password" class="form">
-            <legend>Change Password</legend>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text oi oi-lock-locked"></span>
-              </div>
-               <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
-            </div>
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text oi oi-lock-locked"></span>
-              </div>
-               <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
-            </div>
-            <div class="input-group change-password-button">
-               <button class="btn btn--form" type="submit">Submit</button>
-            </div>
-         </form>
+
          <!-- Bookmarks -->
          <div class="bookmarks"></div>
          <button type="button" class="add-bookmark-btn btn">New Bookmark</button>
@@ -112,6 +122,29 @@
                   <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                      <button type="button" class="btn btn-primary">Yes</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal fade" id="newBookmarkModal" tabindex="-1" role="dialog" aria-labelledby="newBookmarkModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="newBookmarkModalLabel">New Bookmark</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal fade" id="messageModal" status="0" tabindex="-1" role="dialog" aria-labelledby="messageModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-body">
+                     <h5 class="modal-message" id="messageModalLabel"></h5>
                   </div>
                </div>
             </div>
