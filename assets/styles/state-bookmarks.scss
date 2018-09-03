@@ -17,7 +17,7 @@
   }
   & .container-fluid {
     & .row {
-      background: #ccc;
+      background: #222;
       min-width: 300px;
       & h1 {
         font-size: 20px;
@@ -47,6 +47,7 @@
           margin-right: 10px;
           & .change-password {
             height: 200px;
+            width: 300px;
           }
         }
       }

@@ -1,0 +1,11 @@
+.bookmarks {
+  & form {
+    margin-top: 0;
+    padding-right: 20px;
+    background: #333;
+    width: 97%;
+    & button[type="button"] {
+      color: #eee;
+    }
+  }
+}

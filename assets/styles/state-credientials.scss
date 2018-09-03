@@ -17,4 +17,7 @@
     display: flex;
     justify-content: center;
   }
+  & form#sign-up, form#sign-in {
+    width: 300px;
+  }
 }
