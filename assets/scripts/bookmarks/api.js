@@ -47,9 +47,55 @@ const requestDelete = function (id) {
   })
 }
 
+// folder ajax calls api
+const requestFoldersIndex = function () {
+  return $.ajax({
+    url: config.apiUrl + '/folders',
+    method: 'GET',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    }
+  })
+}
+const requestFolderCreate = function (data) {
+  return $.ajax({
+    url: config.apiUrl + '/folders',
+    method: 'POST',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
+const requestFolderUpdate = function (data, id) {
+  return $.ajax({
+    url: config.apiUrl + '/folders/' + id,
+    method: 'PATCH',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data
+  })
+}
+
+const requestFolderDelete = function (id) {
+  return $.ajax({
+    url: config.apiUrl + '/folders/' + id,
+    method: 'DELETE',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   requestIndex,
   requestCreate,
   requestUpdate,
-  requestDelete
+  requestDelete,
+  requestFoldersIndex,
+  requestFolderCreate,
+  requestFolderUpdate,
+  requestFolderDelete
 }

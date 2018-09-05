@@ -150,5 +150,53 @@
             </div>
          </div>
       </div>
+      <div class="state-folders d-none">
+        <button id="get-folders" class="btn" type="button">Get All folders</button>
+        <!-- All folders here -->
+        <div class="all-folders">x</div>
+        <div class="modal fade" id="newFolderModal" tabindex="-1" role="dialog" aria-labelledby="newFolderModalLabel" aria-hidden="true">
+           <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <h5 class="modal-title" id="newFolderModalLabel">New Folder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                 </div>
+                 <div class="modal-body">
+                   <form id="newFolderForm" data-id="" class="form">
+                      <legend></legend>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text oi oi-folder"></span>
+                        </div>
+                         <input class="form-control" type="text" name="folder[name]" placeholder="Name">
+                      </div>
+                      <div class="input-group create-folder-button">
+                         <button class="btn btn--form" type="submit">Submit</button>
+                      </div>
+                   </form>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="modal fade remove-modal" id="removeFolderModal" data-id="" tabindex="-1" role="dialog" aria-labelledby="removeFolderModalLabel" aria-hidden="true">
+           <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                 <div class="modal-header">
+                    <h5 class="modal-title" id="removeFolderModalLabel">Remove Folder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                 </div>
+                 <div class="modal-body"></div>
+                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-primary">Yes</button>
+                 </div>
+              </div>
+           </div>
+        </div>
+      </div>
    </body>
 </html>

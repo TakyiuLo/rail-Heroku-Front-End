@@ -1,0 +1,15 @@
+@import 'folder';
+
+.state-folders {
+  & .all-folders {
+    margin: 10px;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 2px #ccc;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    min-width: 300px;
+    max-width: 900px;
+  }
+}

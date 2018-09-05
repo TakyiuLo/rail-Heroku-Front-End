@@ -4,8 +4,13 @@ const showBookmarksTemplate = require('../templates/bookmarks-template.handlebar
 const bookmarkTemplate = require('../templates/bookmark-template.handlebars')
 const EditbookmarkTemplate = require('../templates/edit-bookmark-template.handlebars')
 const bookmarkTitleTemplate = require('../templates/bookmark-title-template.handlebars')
+// ui folders handlebars template
+const foldersTemplate = require('../templates/folders-templates/folders-template.handlebars')
+const folderTemplate = require('../templates/folders-templates/folder-template.handlebars')
+const store = require('../store')
 
 const messageModal = (message, status) => {
+  // status: normal, success, fail
   $('#messageModal .modal-body').text(message)
   $('#messageModal').modal('toggle')
   $('#messageModal').attr('status', status)
@@ -98,6 +103,68 @@ const requestUpdateFail = (response) => {
   messageModal('Fail to save', 'fail')
 }
 
+// UI folders handlers
+const requestFoldersIndexSuccess = (response) => {
+  const rootFolders = response.folders.filter((folder) => {
+    return folder.parent_id === null
+  })
+  const rootFoldersTemplateHtml = foldersTemplate({folders: rootFolders})
+  $('.all-folders').html(rootFoldersTemplateHtml)
+}
+
+const requestFoldersIndexFail = (response) => {
+  messageModal('Fail to retreive folders', 'fail')
+}
+
+const appendSubFolders = (id) => {
+  const folders = store.folders
+  console.log(folders)
+  const subFolders = folders.filter((folder) => {
+    return folder.parent_id === id
+  })
+  console.log(subFolders)
+  const foldersTemplateHtml = foldersTemplate({folders: subFolders})
+  // add bookmarks here for later
+  $('#sub-folder-' + id).html(foldersTemplateHtml)
+}
+
+const newFolderPrompt = (id) => {
+  // console.log($('#folder-' + id))
+  const parentFolderName = $('#folder-name-' + id).text()
+  const prompt = 'Appeding to: '
+  $('#newFolderForm legend').text(prompt + parentFolderName)
+  $('#newFolderForm').attr('data-id', id)
+  $('#newFolderModal').modal('toggle')
+}
+const requestFolderCreateSuccess = (response) => {
+  const folder = response.folder
+  const folderTemplateHtml = folderTemplate(folder)
+  console.log(folder.parent_id)
+  $('#sub-folder-' + folder.parent_id).append(folderTemplateHtml)
+  store.folders.push(folder)
+}
+const requestFolderCreateFail = (response) => {
+  const responseBody = response.responseJSON
+  console.log(responseBody)
+  messageModal(Object.keys(responseBody)[0] + ' ' + responseBody.name[0], 'fail')
+}
+const deleteFolderPrompt = (id) => {
+  const parentFolderName = $('#folder-name-' + id).text()
+  const prompt = 'Are you sure to remove this folder? '
+  $('#removeFolderModal .modal-body').text(prompt + parentFolderName)
+  $('#removeFolderModal').attr('data-id', id)
+  $('#removeFolderModal').modal('toggle')
+}
+const requestFolderDeleteSuccess = (response, id) => {
+  // console.log('id: ', id)
+  $('#folder-' + id).remove()
+  $('#removeFolderModal').modal('toggle')
+  messageModal('Deleted', 'success')
+}
+const requestFolderDeleteFail = (response) => {
+  messageModal('Fail to Delete', 'fail')
+}
+
 module.exports = {
   requestIndexSuccess,
   requestIndexFail,
@@ -109,5 +176,14 @@ module.exports = {
   removePrompt,
   editBookmark,
   requestUpdateSuccess,
-  requestUpdateFail
+  requestUpdateFail,
+  requestFoldersIndexSuccess,
+  requestFoldersIndexFail,
+  appendSubFolders,
+  newFolderPrompt,
+  requestFolderCreateSuccess,
+  requestFolderCreateFail,
+  deleteFolderPrompt,
+  requestFolderDeleteSuccess,
+  requestFolderDeleteFail
 }

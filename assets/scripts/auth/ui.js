@@ -15,6 +15,7 @@ const signInSuccess = function (response) {
   $('#sign-in input').val('')
   $('.state-credientials').addClass('d-none')
   $('.state-bookmarks').removeClass('d-none')
+  $('.state-folders').removeClass('d-none')
 }
 
 const signInFail = function () {

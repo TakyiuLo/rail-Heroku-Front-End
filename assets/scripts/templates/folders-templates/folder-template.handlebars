@@ -1,0 +1,19 @@
+<div id="folder-{{this.id}}" data-id={{this.id}} class="folder">
+  <div id="folder-header-{{this.id}}" class="folder-header" data-toggle="collapse" data-target="#sub-folder-{{this.id}}" aria-expanded="false" aria-controls="collapseSubFolders">
+    <span class="folder-icon oi oi-folder"></span>
+    <h6 id="folder-name-{{this.id}}">{{this.name}}</h6>
+    <button type="button" class="btn edit-folder-btn">
+      <span class="oi oi-text"></span>
+    </button>
+    <button type="button" class="btn add-folder-btn">
+      <span class="oi oi-plus"></span>
+    </button>
+    <button type="button" class="btn remove-folder-btn">
+      <span class="oi oi-x"></span>
+    </button>
+  </div>
+  <div class="sub-folder">
+    <div id="sub-folder-{{this.id}}" class="collapse folder"></div>
+  </div>
+  <div id="folder-bookmarks" class=""></div>
+</div>

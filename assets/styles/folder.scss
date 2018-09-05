@@ -1,0 +1,72 @@
+@mixin selected {
+  background: #333;
+  & .folder-icon {
+    color: #eee;
+  }
+  & h6 {
+    color: #eee;
+  }
+  & .edit-folder-btn {
+    color: #eee;
+    box-shadow: none;
+  }
+  & .add-folder-btn {
+    color: #eee;
+    box-shadow: none;
+  }
+  & .remove-folder-btn {
+    color: #eee;
+    box-shadow: none;
+  }
+}
+
+.folder {
+  // border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  & .folder-header {
+    display: flex;
+    align-items: center;
+    & .folder-icon {
+      padding-left: 10px;
+      font-size: 15px;
+      color: #666;
+    }
+    & h6 {
+      display: inline-block;
+      padding-left: 10px;
+      margin: 0;
+      margin-right: auto;
+      font-weight: normal;
+    }
+    & .edit-folder-btn {
+      border-radius: 0;
+      background: transparent;
+      box-shadow: 0 2px 2px #ccc;
+      padding-top: 6.5px;
+    }
+    & .add-folder-btn {
+      border-radius: 0;
+      background: transparent;
+      box-shadow: 0 2px 2px #ccc;
+      padding-top: 6.5px;
+    }
+    & .remove-folder-btn {
+      border-radius: 0;
+      background: transparent;
+      box-shadow: 0 2px 2px #ccc;
+      padding-bottom: 6.5px;
+    }
+    &:hover {
+      @include selected
+    }
+    &[aria-expanded='true'] {
+      @include selected
+    }
+  }
+  & .sub-folder {
+    margin-left: 10px;
+    background: #fff;
+    box-shadow: 0 2px 2px #ccc;
+  }
+}
