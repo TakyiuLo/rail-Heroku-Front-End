@@ -39,4 +39,4 @@ Version 2 has a simpole UI to CRUD bookmarks and folders.
 - As a user, I want a message of my actions.
 
 # Back-End
-To back-end: [front-end repo](https://github.com/TakyiuLo/rail-Heroku-Back-End)
+To back-end: [Back-End repo](https://github.com/TakyiuLo/rail-Heroku-Back-End)
