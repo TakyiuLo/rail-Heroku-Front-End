@@ -11,101 +11,99 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
    </head>
    <body>
-     <!-- credientials -->
+      <!-- credientials -->
       <div class="state-credientials">
          <h1>Bookmarks</h1>
          <h4 class="auth-message"></h4>
          <div class="login-form">
-           <div class="card-container">
-             <div class="card">
-               <form id="sign-up" class="card-face front form">
-                  <legend>Sign Up</legend>
-                  <div class="input-group">
-                     <div class="input-group-prepend">
-                       <span class="input-group-text oi oi-envelope-closed"></span>
+            <div class="card-container">
+               <div class="card">
+                  <form id="sign-up" class="card-face front form">
+                     <legend>Sign Up</legend>
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text oi oi-envelope-closed"></span>
+                        </div>
+                        <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
                      </div>
-                     <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
-                  </div>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text oi oi-lock-locked"></span>
-                    </div>
-                     <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
-                  </div>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text oi oi-lock-locked"></span>
-                    </div>
-                     <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
-                  </div>
-                  <div class="input-group sign-up-button">
-                     <button class="btn btn--form" type="submit">Register</button>
-                  </div>
-                  <div class="switch-already-member">
-                    <button type="button" class="btn">Already a member</button>
-                  </div>
-               </form>
-               <form id="sign-in" class="card-face back center form">
-                  <legend>Sign In</legend>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text oi oi-envelope-closed"></span>
-                    </div>
-                     <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
-                  </div>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text oi oi-lock-locked"></span>
-                    </div>
-                     <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
-                  </div>
-                  <div class="input-group sign-in-button">
-                     <button class="btn btn--form" type="submit">Login</button>
-                  </div>
-                  <div class="switch-non-member">
-                    <button type="button" class="btn">Sign Up</button>
-                  </div>
-               </form>
-             </div>
-           </div>
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text oi oi-lock-locked"></span>
+                        </div>
+                        <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
+                     </div>
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text oi oi-lock-locked"></span>
+                        </div>
+                        <input class="form-control" type="password" name="credentials[password_confirmation]" placeholder="Confirm Password">
+                     </div>
+                     <div class="input-group sign-up-button">
+                        <button class="btn btn--form" type="submit">Register</button>
+                     </div>
+                     <div class="switch-already-member">
+                        <button type="button" class="btn">Already a member</button>
+                     </div>
+                  </form>
+                  <form id="sign-in" class="card-face back center form">
+                     <legend>Sign In</legend>
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text oi oi-envelope-closed"></span>
+                        </div>
+                        <input class="form-control" type="email" name="credentials[email]" placeholder="Email Address">
+                     </div>
+                     <div class="input-group">
+                        <div class="input-group-prepend">
+                           <span class="input-group-text oi oi-lock-locked"></span>
+                        </div>
+                        <input class="form-control" type="password" name="credentials[password]" placeholder="Password">
+                     </div>
+                     <div class="input-group sign-in-button">
+                        <button class="btn btn--form" type="submit">Login</button>
+                     </div>
+                     <div class="switch-non-member">
+                        <button type="button" class="btn">Sign Up</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
          </div>
       </div>
       <div class="state-bookmarks d-none">
-        <div class="container-fluid bookmark-navbar">
-          <div class="row">
-            <h1 class="col-6">Bookmarks</h1>
-            <div class="dropdown col-6">
-              <a class="btn btn-secondary btn-lg" id="accountButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="oi oi-cog"></span>
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountButton">
-                <form id="change-password" class="form change-password dropdown-item">
-                   <legend>Change Password</legend>
-                   <div class="input-group">
-                     <div class="input-group-prepend">
-                       <span class="input-group-text oi oi-lock-locked"></span>
-                     </div>
-                      <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
-                   </div>
-                   <div class="input-group">
-                     <div class="input-group-prepend">
-                       <span class="input-group-text oi oi-lock-locked"></span>
-                     </div>
-                      <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
-                   </div>
-                   <div class="input-group change-password-button">
-                      <button class="btn btn--form" type="submit">Submit</button>
-                   </div>
-                </form>
-                <button id="sign-out" class="sign-out dropdown-item" type="button">Sign out</button>
-              </div>
+         <div class="container-fluid bookmark-navbar">
+            <div class="row">
+               <h1 class="col-6">Bookmarks</h1>
+               <div class="dropdown col-6">
+                  <a class="btn btn-secondary btn-lg" id="accountButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="oi oi-cog"></span>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountButton">
+                     <form id="change-password" class="form change-password dropdown-item">
+                        <legend>Change Password</legend>
+                        <div class="input-group">
+                           <div class="input-group-prepend">
+                              <span class="input-group-text oi oi-lock-locked"></span>
+                           </div>
+                           <input class="form-control" type="password" name="passwords[old]" placeholder="Old Password">
+                        </div>
+                        <div class="input-group">
+                           <div class="input-group-prepend">
+                              <span class="input-group-text oi oi-lock-locked"></span>
+                           </div>
+                           <input class="form-control" type="password" name="passwords[new]" placeholder="New Password">
+                        </div>
+                        <div class="input-group change-password-button">
+                           <button class="btn btn--form" type="submit">Submit</button>
+                        </div>
+                     </form>
+                     <button id="sign-out" class="sign-out dropdown-item" type="button">Sign out</button>
+                  </div>
+               </div>
             </div>
-          </div>
-        </div>
-
+         </div>
          <h4 class="auth-message"></h4>
          <h5 class="bookmark-crud-message"></h5>
-
          <!-- Bookmarks -->
          <div class="bookmarks-hidden"></div>
          <button type="button" class="d-none add-bookmark-btn btn">New Bookmark</button>
@@ -151,95 +149,92 @@
             </div>
          </div>
       </div>
-
       <!-- folders -->
       <div class="state-folders d-none">
-        <button id="get-folders" class="btn d-none" type="button">Get All Bookmarks</button>
-        <!-- All folders here -->
-        <div id="folder-bookmarks-null" class="all-folders">
-          <h6>Refresh the bookmarks</h6>
-        </div>
-        <div class="root-control-button">
-          <button type="button" class="add-root-folder-btn btn">New Folder</button>
-          <button type="button" class="add-root-bookmark-btn btn">New Bookmark</button>
-        </div>
-
-
-        <div class="modal fade" id="newFolderModal" tabindex="-1" role="dialog" aria-labelledby="newFolderModalLabel" aria-hidden="true">
-           <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                 <div class="modal-header">
-                    <h5 class="modal-title" id="newFolderModalLabel">New Folder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                 </div>
-                 <div class="modal-body">
-                   <form id="newFolderForm" data-id="" class="form">
-                      <legend></legend>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text oi oi-folder"></span>
+         <button id="get-folders" class="btn d-none" type="button">Get All Bookmarks</button>
+         <!-- All folders here -->
+         <div id="folder-bookmarks-null" class="all-folders">
+            <h6>Refresh the bookmarks</h6>
+         </div>
+         <div class="root-control-button">
+            <button type="button" class="add-root-folder-btn btn">New Folder</button>
+            <button type="button" class="add-root-bookmark-btn btn">New Bookmark</button>
+         </div>
+         <div class="modal fade" id="newFolderModal" tabindex="-1" role="dialog" aria-labelledby="newFolderModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="newFolderModalLabel">New Folder</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <form id="newFolderForm" data-id="" class="form">
+                        <legend></legend>
+                        <div class="input-group">
+                           <div class="input-group-prepend">
+                              <span class="input-group-text oi oi-folder"></span>
+                           </div>
+                           <input class="form-control" type="text" name="folder[name]" placeholder="Name">
                         </div>
-                         <input class="form-control" type="text" name="folder[name]" placeholder="Name">
-                      </div>
-                      <div class="input-group create-folder-button">
-                         <button class="btn btn--form" type="submit">Save</button>
-                      </div>
-                   </form>
-                 </div>
-                 <div class="modal-footer">
-                   <button type="button" class="btn add-bookmark-btn">New Bookmark</button>
-                 </div>
-              </div>
-           </div>
-        </div>
-        <div class="modal fade remove-modal" id="removeFolderModal" data-id="" tabindex="-1" role="dialog" aria-labelledby="removeFolderModalLabel" aria-hidden="true">
-           <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                 <div class="modal-header">
-                    <h5 class="modal-title" id="removeFolderModalLabel">Remove Folder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                 </div>
-                 <div class="modal-body"></div>
-                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                    <button type="button" class="btn btn-primary">Yes</button>
-                 </div>
-              </div>
-           </div>
-        </div>
-        <div class="modal fade" id="editFolderModal" tabindex="-1" role="dialog" aria-labelledby="editFolderModalLabel" aria-hidden="true">
-           <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                 <div class="modal-header">
-                    <h5 class="modal-title" id="editFolderModalLabel">Edit Folder</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                 </div>
-                 <div class="modal-body">
-                   <form id="editFolderForm" data-id="" class="form">
-                      <legend></legend>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text oi oi-folder"></span>
+                        <div class="input-group create-folder-button">
+                           <button class="btn btn--form" type="submit">Save</button>
                         </div>
-                         <input class="form-control edit-form-input-name" type="text" name="folder[name]" value="" placeholder="Name">
-                      </div>
-                      <div class="input-group edit-folder-button">
-                         <button class="btn btn--form" type="submit">Save</button>
-                      </div>
-                   </form>
-                 </div>
-                 <div class="modal-footer">
-                   <button type="button" class="btn btn-primary add-bookmark-btn">New Bookmark</button>
-                 </div>
-              </div>
-           </div>
-        </div>
+                     </form>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn add-bookmark-btn">New Bookmark</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal fade remove-modal" id="removeFolderModal" data-id="" tabindex="-1" role="dialog" aria-labelledby="removeFolderModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="removeFolderModalLabel">Remove Folder</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body"></div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                     <button type="button" class="btn btn-primary">Yes</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="modal fade" id="editFolderModal" tabindex="-1" role="dialog" aria-labelledby="editFolderModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="editFolderModalLabel">Edit Folder</h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <form id="editFolderForm" data-id="" class="form">
+                        <legend></legend>
+                        <div class="input-group">
+                           <div class="input-group-prepend">
+                              <span class="input-group-text oi oi-folder"></span>
+                           </div>
+                           <input class="form-control edit-form-input-name" type="text" name="folder[name]" value="" placeholder="Name">
+                        </div>
+                        <div class="input-group edit-folder-button">
+                           <button class="btn btn--form" type="submit">Save</button>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-primary add-bookmark-btn">New Bookmark</button>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </body>
 </html>
