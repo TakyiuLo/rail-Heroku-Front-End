@@ -37,6 +37,7 @@ const signOutSuccess = function () {
   $('.auth-message').text('Signed Out')
   $('.state-credientials').removeClass('d-none')
   $('.state-bookmarks').addClass('d-none')
+  $('.state-folders').addClass('d-none')
 }
 
 const signOutFail = function () {

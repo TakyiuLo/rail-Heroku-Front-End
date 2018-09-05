@@ -1,5 +1,5 @@
 <div id="folder-{{this.id}}" data-id={{this.id}} class="folder">
-  <div id="folder-header-{{this.id}}" class="folder-header" data-toggle="collapse" data-target="#sub-folder-{{this.id}}" aria-expanded="false" aria-controls="collapseSubFolders">
+  <div id="folder-header-{{this.id}}" class="folder-header" data-toggle="collapse" data-target="#sub-folder-{{this.id}}, #folder-bookmarks-{{this.id}}" aria-expanded="false" aria-controls="collapseSubFolders">
     <span class="folder-icon oi oi-folder"></span>
     <h6 id="folder-name-{{this.id}}">{{this.name}}</h6>
     <button type="button" class="btn edit-folder-btn">
@@ -15,5 +15,5 @@
   <div class="sub-folder">
     <div id="sub-folder-{{this.id}}" class="collapse folder"></div>
   </div>
-  <div id="folder-bookmarks" class=""></div>
+  <div id="folder-bookmarks-{{this.id}}" class="sub-boomarks"></div>
 </div>

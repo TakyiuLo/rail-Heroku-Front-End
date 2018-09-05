@@ -14,7 +14,9 @@ const onGetAllBookmarks = () => {
 const onCreatePrompt = () => {
   // Create an id for the specify EditBookmarkHtml
   const id = 'empty_form_id_' + ++store.emptyBookmarkNumber
-  ui.addBookmarkPrompt(id)
+  // for folder-bookmarks
+  const folderId = parseInt($('#newFolderForm').attr('data-id'), 10)
+  ui.addBookmarkPrompt(id, folderId)
 }
 
 const onCreateBookmark = (event) => {
@@ -23,10 +25,19 @@ const onCreateBookmark = (event) => {
   const target = $(event.target).find('button')
   if (target.attr('value') === 'create') {
     const data = getFormFields(event.target)
+
+    // add folder_id from here rather than in handlebars because request with
+    // handlebars template doesn't work
+    const folderId = parseInt($(event.target).attr('data-folder-id'))
+    console.log('folderId ', folderId)
+    if (folderId) {
+      data.bookmark.folder_id = folderId
+    }
     console.log('create data:', data)
     api.requestCreate(data)
       .then((response) => {
         ui.requestCreateSuccess(response, event.target.id)
+        return response
       })
       .catch(ui.requestCreateFail)
   }
@@ -47,12 +58,14 @@ const onRemoveBookmark = (event) => {
   api.requestDelete(id)
     .then((response) => {
       ui.requestDeleteSuccess(response, id)
+      return response
     })
     .catch(ui.requestDeleteFail)
 }
 
 const onEditBookmark = (event) => {
   ui.editBookmark($(event.target).closest('.bookmark')[0])
+  console.log($(event.target).closest('.bookmark')[0])
 }
 
 const onSaveBookmark = (event) => {
@@ -64,6 +77,7 @@ const onSaveBookmark = (event) => {
     api.requestUpdate(data, event.target.id)
       .then((response) => {
         ui.requestUpdateSuccess(response, event.target.id)
+        return response
       })
       .catch(ui.requestUpdateFail)
   }
@@ -89,19 +103,27 @@ const appendSubFolders = (event) => {
 
   // append folders
   // const id = parseInt($(event.target).closest('.folder')[0].id.substring(7), 10)
-  const id = parseInt($(event.target).closest('.folder').attr('data-id'), 10)
+  const folderId = parseInt($(event.target).closest('.folder').attr('data-id'), 10)
   // console.log(id)
-  ui.appendSubFolders(id)
+  ui.appendSubFolders(folderId)
+  ui.addBookmarksToFolder(folderId)
 }
 const onCreateFolderPrompt = (event) => {
-  const id = parseInt($(event.target).closest('.folder').attr('data-id'), 10)
+  console.log('ok we are here')
+  const id = $(event.target).closest('.folder').attr('data-id')
   ui.newFolderPrompt(id)
 }
 const onCreateFolder = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
 
-  data.folder.folder_id = parseInt($(event.target).attr('data-id'))
+  const folderId = parseInt($(event.target).attr('data-id'))
+  console.log('folderId ', folderId)
+  if (folderId) {
+    // when folder is appending to non root folder
+    data.folder.folder_id = folderId
+  }
+
   console.log(data)
   api.requestFolderCreate(data)
     .then(ui.requestFolderCreateSuccess)
@@ -112,25 +134,50 @@ const onDeleteFolderPrompt = (event) => {
   ui.deleteFolderPrompt(id)
 }
 const onRemoveFolder = (event) => {
+  event.preventDefault()
   const id = $('#removeFolderModal').attr('data-id')
   api.requestFolderDelete(id)
     .then((response) => {
       ui.requestFolderDeleteSuccess(response, id)
+      return response
     })
     .catch(ui.requestFolderDeleteFail)
+}
+const onEditFolderPrompt = (event) => {
+  const id = parseInt($(event.target).closest('.folder').attr('data-id'), 10)
+  const name = $('#folder-name-' + id).text()
+  ui.editFolderPrompt(id, name)
+}
+const onUpdateFolder = (event) => {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  const id = parseInt($('#editFolderModal').attr('data-id'), 10)
+  api.requestFolderUpdate(data, id)
+    .then((response) => {
+      ui.requestUpdateFolderSuccess(response, id)
+      return response
+    })
+    .catch(ui.requestUpdateFolderFail)
+}
+const onCreateRootBookmark = (event) => {
+  ui.onCreateRootBookmark()
+}
+const onCreateRootFolder = (event) => {
+  ui.onCreateRootFolder()
 }
 
 const addHandlers = function () {
   // get all Bookmarks
   store.loadBookmarks = onGetAllBookmarks
+  store.loadFolders = onGetAllFolders
   store.emptyBookmarkNumber = 0
   // bookmark handlers
-  $('.add-bookmark-btn').on('click', onCreatePrompt)
-  $('#newBookmarkModal').on('submit', '.create-btn', onCreateBookmark)
-  $('.bookmarks').on('click', '.remove-btn', onRemovePrompt)
-  $('#removeModal .btn-primary').on('click', onRemoveBookmark)
-  $('.bookmarks').on('click', '.edit-btn', onEditBookmark)
-  $('.bookmarks').on('submit', '.save-btn', onSaveBookmark)
+  // $('.add-bookmark-btn').on('click', onCreatePrompt)
+  // $('#newBookmarkModal').on('submit', '.create-btn', onCreateBookmark)
+  // $('.bookmarks').on('click', '.remove-btn', onRemovePrompt)
+  // $('#removeModal .btn-primary').on('click', onRemoveBookmark)
+  // $('.bookmarks').on('click', '.edit-btn', onEditBookmark)
+  // $('.bookmarks').on('submit', '.save-btn', onSaveBookmark)
   // folder handlers
   $('#get-folders').on('click', onGetAllFolders)
   $('.all-folders').on('click', '.folder-header', appendSubFolders)
@@ -138,6 +185,17 @@ const addHandlers = function () {
   $('#newFolderForm').on('submit', onCreateFolder)
   $('.all-folders').on('click', '.remove-folder-btn', onDeleteFolderPrompt)
   $('#removeFolderModal .btn-primary').on('click', onRemoveFolder)
+  $('.all-folders').on('click', '.edit-folder-btn', onEditFolderPrompt)
+  $('#editFolderForm').on('submit', onUpdateFolder)
+  // folder-bookmarks handlers
+  $('.add-bookmark-btn').on('click', onCreatePrompt)
+  $('#newBookmarkModal').on('submit', '.create-btn', onCreateBookmark)
+  $('.all-folders').on('click', '.remove-btn', onRemovePrompt)
+  $('#removeModal .btn-primary').on('click', onRemoveBookmark)
+  $('.all-folders').on('click', '.edit-btn', onEditBookmark)
+  $('.all-folders').on('submit', '.save-btn', onSaveBookmark)
+  $('.add-root-bookmark-btn').on('click', onCreateRootBookmark)
+  $('.add-root-folder-btn').on('click', onCreateRootFolder)
 }
 
 module.exports = {

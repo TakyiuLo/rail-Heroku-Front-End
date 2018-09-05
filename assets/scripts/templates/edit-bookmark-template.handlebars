@@ -1,6 +1,7 @@
 <div>
-   <form id="{{bookmark.id}}" class="form create-btn save-btn remove-btn box">
+   <form id="{{bookmark.id}}" data-folder-id="{{bookmark.folderId}}" class="form create-btn save-btn remove-btn box">
       <label for="New Bookmark"></label>
+      <legend></legend>
       <div class="input-group">
          <span class="input-group-text">Title</span>
          <input class="form-control title" type="text" name="bookmark[title]" placeholder="header" value="{{bookmark.title}}">

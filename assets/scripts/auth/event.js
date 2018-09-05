@@ -17,6 +17,7 @@ const onSignUp = function (event) {
 const onSignInSuccess = (response) => {
   store.user = response.user
   store.loadBookmarks()
+  store.loadFolders()
 }
 
 const onSignIn = function (event) {
