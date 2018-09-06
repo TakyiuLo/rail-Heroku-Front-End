@@ -34,17 +34,16 @@
 .diy-became-loading {
   & span {
     display: none;
-    border: 5px solid #eee !important;
-    border-radius: 40px !important;
-    box-shadow: 0px !important;
-    border-top: 5px solid #338DFF !important;
-    height: 35px !important;
-    width: 30px !important;
-    background: transparent !important;
-    perspective: 900px;
-    animation: became-loading 1s linear infinite 0s normal;
   }
-
+  border: 5px solid #eee !important;
+  border-radius: 40px !important;
+  box-shadow: 0px !important;
+  border-top: 5px solid #338DFF !important;
+  height: 35px !important;
+  width: 30px !important;
+  background: transparent !important;
+  perspective: 900px;
+  animation: became-loading 1s linear infinite 0s normal;
 }
 
 @keyframes slide-out {
