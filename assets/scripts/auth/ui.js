@@ -1,24 +1,39 @@
 'use strict'
 
+const loadingSignUp = function () {
+  $('.sign-up-button').addClass('diy-became-loading')
+  console.log('ok')
+}
+
 const signUpSuccess = function () {
   $('.auth-message').text('Successfully Sign Up')
   $('#sign-up input').val('')
+  $('.sign-up-button').removeClass('diy-became-loading')
 }
 
 const signUpFail = function () {
+  $('.sign-up-button').removeClass('diy-became-loading')
   $('.auth-message').text('Failed to Sign Up')
   $('#sign-up input').val('')
 }
 
+const loadingSignIn = function () {
+  $('.sign-in-button').addClass('diy-became-loading')
+}
+
 const signInSuccess = function (response) {
+  $('.sign-in-button').removeClass('diy-became-loading')
   $('.auth-message').text('Login Successfully')
   $('#sign-in input').val('')
   $('.state-credientials').addClass('d-none')
   $('.state-bookmarks').removeClass('d-none')
+  $('.state-bookmarks').addClass('diy-slide-in')
+  $('.state-folders').addClass('diy-slide-in')
   $('.state-folders').removeClass('d-none')
 }
 
 const signInFail = function () {
+  $('.sign-in-button').removeClass('diy-became-loading')
   $('.auth-message').text('Failed to Login')
   $('#sign-in input').val('')
 }
@@ -35,9 +50,19 @@ const changePasswordFail = function () {
 
 const signOutSuccess = function () {
   $('.auth-message').text('Signed Out')
-  $('.state-credientials').removeClass('d-none')
-  $('.state-bookmarks').addClass('d-none')
-  $('.state-folders').addClass('d-none')
+  $('.state-bookmarks').addClass('diy-slide-out')
+  $('.state-folders').addClass('diy-slide-out')
+  setTimeout(() => {
+    $('.state-bookmarks').addClass('d-none')
+    $('.state-folders').addClass('d-none')
+    $('.state-bookmarks').removeClass('diy-slide-out')
+    $('.state-folders').removeClass('diy-slide-out')
+    $('.state-credientials').removeClass('d-none')
+    $('.state-credientials').addClass('diy-slide-in')
+  }, 400)
+
+  $('.state-bookmarks').removeClass('diy-slide-in')
+  $('.state-folders').removeClass('diy-slide-in')
 }
 
 const signOutFail = function () {
@@ -60,6 +85,8 @@ const switchToSignUp = function (event) {
 }
 
 module.exports = {
+  loadingSignUp,
+  loadingSignIn,
   signUpSuccess,
   signUpFail,
   signInSuccess,

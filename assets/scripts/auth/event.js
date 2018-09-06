@@ -8,6 +8,8 @@ const store = require('../store.js')
 const onSignUp = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  // console.log('ok')
+  ui.loadingSignUp()
 
   api.signUp(data)
     .then(ui.signUpSuccess)
@@ -23,6 +25,8 @@ const onSignInSuccess = (response) => {
 const onSignIn = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+
+  ui.loadingSignIn()
 
   api.signIn(data)
     .then(onSignInSuccess)
