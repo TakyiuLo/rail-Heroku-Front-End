@@ -1,8 +1,24 @@
-# Bookmarks full stack project
-Objective:
-- The bookmark project is for demonstration of my ability to create a full stack project. 
-- The app itself is reponseive web design with CRUD actions.
-- CRUD stands for create, read, update, and delete.
+## Bookmarks full stack project
+# Summary
+For training purposes, this part of website is used as front-end giving a simple
+user interfaces.
+
+# Idea
+Well, I was browsing my Chrome bookmarks and I found I didn't know what most of
+are for so I created this website. Bookmarks is for creating a bookmark page that
+I can put descriptions along with title.
+
+# Objective:
+- Demonstration of my ability to create a full stack project 
+- Reponseive web design
+- CRUD actions
+- Use Ruby on Rails
+
+# Tech used
+- Html, CSS, Javascript
+- Handlebars, SCSS, JQuery
+- Bootstrap 4, Iconics
+
 
 # Wireframe:
 [Imgur](https://i.imgur.com/jiGrLbP.png)
