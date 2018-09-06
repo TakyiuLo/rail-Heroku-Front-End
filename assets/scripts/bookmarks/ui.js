@@ -11,6 +11,11 @@ const store = require('../store')
 
 const messageModal = (message, status) => {
   // status: normal, success, fail
+  if (status === 'fail') {
+    $('#get-folders').removeClass('d-none')
+  } else if (status === 'success') {
+    $('#get-folders').addClass('d-none')
+  }
   $('#messageModal .modal-body').text(message)
   $('#messageModal').modal('toggle')
   $('#messageModal').attr('status', status)
@@ -25,14 +30,12 @@ const requestIndexSuccess = function (response) {
   $('.bookmarks').html(showBookmarksHtml)
   // $('.bookmark-crud-message').text('All are revealed')
   messageModal('Reveal All', 'success')
-  $('#get-folders').addClass('d-none')
   store.bookmarks = response.bookmarks
 }
 
 const requestIndexFail = function (response) {
   // $('.bookmark-crud-message').text('Fail to show all bookmarks')
   messageModal('Fail to reveal', 'fail')
-  $('#get-folders').removeClass('d-none')
 }
 
 const addBookmarkPrompt = (id, folderId) => {
@@ -50,17 +53,23 @@ const addBookmarkPrompt = (id, folderId) => {
 }
 
 const requestCreateSuccess = (response, id) => {
-  console.log('The ok id: ', id)
+  // console.log('The ok id: ', id)
   const bookmarkHtml = bookmarkTemplate(response.bookmark)
-  $('.bookmarks').append(bookmarkHtml) // version 1 only
-  $('#' + id).remove()
-  $('#newBookmarkModal').modal('toggle')
+  // $('.bookmarks').append(bookmarkHtml) // version 1
+  // $('#' + id).remove() // version 1
   // $('.bookmark-crud-message').text('Saved')
 
   // append root bookmark to the root folder
-  if (id.includes('empty_form-null')) {
+  const folderId = $('#' + id).attr('data-folder-id')
+  // console.log('folderId: ', folderId)
+  if (folderId) {
+    // append to sub folder
+    $('#folder-bookmarks-' + folderId).append(bookmarkHtml)
+  } else {
+    // append to root folder
     $('.all-folders').append(bookmarkHtml)
   }
+  $('#newBookmarkModal').modal('toggle')
   messageModal('Saved', 'success')
 
   // append a new bookmark to store
@@ -81,6 +90,9 @@ const requestDeleteSuccess = (response, id) => {
 
   // remove bookmark from store
   const index = store.bookmarks.map((bookmark) => { return bookmark.id }).indexOf(id)
+  // console.log('store.bookmarks: ', store.bookmarks)
+  // console.log('id we are looking: ', id)
+  // console.log('index: ', index)
   store.bookmarks.splice(index, 1)
 }
 
@@ -135,7 +147,7 @@ const requestFoldersIndexSuccess = (response) => {
   const rootFoldersTemplateHtml = foldersTemplate({folders: rootFolders})
   $('.all-folders').html(rootFoldersTemplateHtml)
   messageModal('Reveal All', 'success')
-  addBookmarksToFolder(null)
+  appendBookmarksToFolder(null)
 }
 
 const requestFoldersIndexFail = (response) => {
@@ -144,13 +156,11 @@ const requestFoldersIndexFail = (response) => {
 
 const appendSubFolders = (folderId) => {
   const folders = store.folders
-  console.log(folders)
-  const subFolders = folders.filter((folder) => {
-    return folder.parent_id === folderId
-  })
-  console.log(subFolders)
+  // console.log('store.folders', folders)
+  const subFolders = folders.filter(folder => folder.parent_id === folderId)
+  // console.log('subfolders: ', subFolders)
   const foldersTemplateHtml = foldersTemplate({folders: subFolders})
-  // add bookmarks here for later
+  // append the sub folders
   $('#sub-folder-' + folderId).html(foldersTemplateHtml)
 }
 
@@ -165,7 +175,7 @@ const newFolderPrompt = (id) => {
 const requestFolderCreateSuccess = (response) => {
   const folder = response.folder
   const folderTemplateHtml = folderTemplate(folder)
-  console.log('parent folder', folder.parent_id)
+  // console.log('parent folder', folder.parent_id)
   if (folder.parent_id === null) {
     $('.all-folders').append(folderTemplateHtml)
   } else {
@@ -180,7 +190,7 @@ const requestFolderCreateSuccess = (response) => {
 }
 const requestFolderCreateFail = (response) => {
   const responseBody = response.responseJSON
-  console.log(responseBody)
+  // console.log(responseBody)
   messageModal(Object.keys(responseBody)[0] + ' ' + responseBody.name[0], 'fail')
 }
 const deleteFolderPrompt = (id) => {
@@ -192,6 +202,9 @@ const deleteFolderPrompt = (id) => {
 }
 const requestFolderDeleteSuccess = (response, id) => {
   // console.log('id: ', id)
+  const index = store.folders.map(folder => folder.id).indexOf(id)
+  store.folders = store.folders.splice(index, 1)
+  // console.log('store.folders: ', store.folders)
   $('#folder-' + id).remove()
   $('#removeFolderModal').modal('toggle')
   messageModal('Deleted', 'success')
@@ -224,11 +237,12 @@ const requestUpdateFolderFail = (response) => {
   messageModal('Fail to Save', 'fail')
 }
 
-const addBookmarksToFolder = (id) => {
+const appendBookmarksToFolder = (id) => {
   // get bookmarks that are in this folder with id
   const bookmarks = store.bookmarks.filter(bookmark => bookmark.folder_id === id)
   const bookmarksTemplateHtml = bookmarksTemplate({bookmarks})
-  console.log(id)
+  // console.log('id: ', id)
+  // console.log('filtered bookmarks', bookmarks)
   if (id === null) {
     $('#folder-bookmarks-' + id).append(bookmarksTemplateHtml)
   } else {
@@ -275,7 +289,7 @@ module.exports = {
   editFolderPrompt,
   requestUpdateFolderSuccess,
   requestUpdateFolderFail,
-  addBookmarksToFolder,
+  appendBookmarksToFolder,
   onCreateRootBookmark,
   onCreateRootFolder
 }

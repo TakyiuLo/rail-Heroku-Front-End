@@ -29,11 +29,11 @@ const onCreateBookmark = (event) => {
     // add folder_id from here rather than in handlebars because request with
     // handlebars template doesn't work
     const folderId = parseInt($(event.target).attr('data-folder-id'))
-    console.log('folderId ', folderId)
+    // console.log('folderId ', folderId)
     if (folderId) {
       data.bookmark.folder_id = folderId
     }
-    console.log('create data:', data)
+    // console.log('create data:', data)
     api.requestCreate(data)
       .then((response) => {
         ui.requestCreateSuccess(response, event.target.id)
@@ -65,7 +65,7 @@ const onRemoveBookmark = (event) => {
 
 const onEditBookmark = (event) => {
   ui.editBookmark($(event.target).closest('.bookmark')[0])
-  console.log($(event.target).closest('.bookmark')[0])
+  // console.log($(event.target).closest('.bookmark')[0])
 }
 
 const onSaveBookmark = (event) => {
@@ -73,7 +73,7 @@ const onSaveBookmark = (event) => {
   const target = $(event.target).find('button')
   if (target.attr('value') === 'save') {
     const data = getFormFields(event.target)
-    console.log('save data:', data)
+    // console.log('save data:', data)
     api.requestUpdate(data, event.target.id)
       .then((response) => {
         ui.requestUpdateSuccess(response, event.target.id)
@@ -84,6 +84,10 @@ const onSaveBookmark = (event) => {
 }
 
 // Folders handlers
+const onGetAll = (event) => {
+  onGetAllBookmarks(event)
+  onGetAllFolders(event)
+}
 const requestFolderIndexSuccess = (response) => {
   store.folders = JSON.parse(JSON.stringify(response.folders))
   return response
@@ -94,22 +98,23 @@ const onGetAllFolders = (event) => {
     .then(ui.requestFoldersIndexSuccess)
     .catch(ui.requestFoldersIndexFail)
 }
-const appendSubFolders = (event) => {
-  // const exceptions = ['btn', 'oi']
-  // // not going to expend for buttons, or span icons
-  // if (!exceptions.some((exception) => {
-  //   return $(event.target).hasClass(exception)
-  // })) {}
-
-  // append folders
-  // const id = parseInt($(event.target).closest('.folder')[0].id.substring(7), 10)
-  const folderId = parseInt($(event.target).closest('.folder').attr('data-id'), 10)
-  // console.log(id)
-  ui.appendSubFolders(folderId)
-  ui.addBookmarksToFolder(folderId)
+const appendSubFoldersBookmarks = (event) => {
+  // console.log('who:', $(event.target))
+  const exceptions = ['btn', 'oi']
+  // prevent to append to both sub and root folder
+  if (!exceptions.some(exception => $(event.target).hasClass(exception))) {
+    // get parent id
+    const folderId = parseInt($(event.target).closest('.folder').attr('data-id'), 10)
+    // append folders
+    ui.appendSubFolders(folderId)
+    // append bookmarks
+    ui.appendBookmarksToFolder(folderId)
+  }
+  // console.log('store.folders: ', store.folders)
+  // console.log('store.bookmarks: ', store.bookmarks)
 }
 const onCreateFolderPrompt = (event) => {
-  console.log('ok we are here')
+  // console.log('ok we are here')
   const id = $(event.target).closest('.folder').attr('data-id')
   ui.newFolderPrompt(id)
 }
@@ -118,13 +123,13 @@ const onCreateFolder = (event) => {
   const data = getFormFields(event.target)
 
   const folderId = parseInt($(event.target).attr('data-id'))
-  console.log('folderId ', folderId)
+  // console.log('folderId ', folderId)
   if (folderId) {
     // when folder is appending to non root folder
     data.folder.folder_id = folderId
   }
 
-  console.log(data)
+  // console.log(data)
   api.requestFolderCreate(data)
     .then(ui.requestFolderCreateSuccess)
     .catch(ui.requestFolderCreateFail)
@@ -179,8 +184,8 @@ const addHandlers = function () {
   // $('.bookmarks').on('click', '.edit-btn', onEditBookmark)
   // $('.bookmarks').on('submit', '.save-btn', onSaveBookmark)
   // folder handlers
-  $('#get-folders').on('click', onGetAllFolders)
-  $('.all-folders').on('click', '.folder-header', appendSubFolders)
+  $('#get-folders').on('click', onGetAll)
+  $('.all-folders').on('click', '.folder-header', appendSubFoldersBookmarks)
   $('.all-folders').on('click', '.add-folder-btn', onCreateFolderPrompt)
   $('#newFolderForm').on('submit', onCreateFolder)
   $('.all-folders').on('click', '.remove-folder-btn', onDeleteFolderPrompt)

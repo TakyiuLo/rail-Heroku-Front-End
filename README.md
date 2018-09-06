@@ -12,10 +12,10 @@ Version 1 has a simple UI to CRUD only bookmarks.
 
 # Users Stories:
 - Auth
-As a non-registered user, I would like to sign up with email and password
-As a registered user, I would like to sign in with email and password
-As a signed in user, I would like to change my password
-As a registered user who signed in, I would like to sign out my account
+As a non-registered user, I would like to sign up with email and password.
+As a registered user, I would like to sign in with email and password.
+As a signed in user, I would like to change my password.
+As a registered user who signed in, I would like to sign out my account.
 
 - Bookmarks
 As a signed in user, I would like to see all my bookmarks in a table format.
