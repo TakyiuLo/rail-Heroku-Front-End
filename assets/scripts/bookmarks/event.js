@@ -73,6 +73,10 @@ const onSaveBookmark = (event) => {
   const target = $(event.target).find('button')
   if (target.attr('value') === 'save') {
     const data = getFormFields(event.target)
+    console.log(data.bookmark.url.substring(0, 7) !== 'http://')
+    if (data.bookmark.url.substring(0, 7) !== 'http://' && data.bookmark.url.substring(0, 8) !== 'https://') {
+      data.bookmark.url = 'http://' + data.bookmark.url
+    }
     // console.log('save data:', data)
     api.requestUpdate(data, event.target.id)
       .then((response) => {
