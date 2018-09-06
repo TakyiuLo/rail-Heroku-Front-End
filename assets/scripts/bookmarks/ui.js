@@ -172,6 +172,7 @@ const newFolderPrompt = (id) => {
   $('#newFolderForm').attr('data-id', id)
   $('#newFolderModal').modal('toggle')
 }
+
 const requestFolderCreateSuccess = (response) => {
   const folder = response.folder
   const folderTemplateHtml = folderTemplate(folder)
@@ -188,11 +189,13 @@ const requestFolderCreateSuccess = (response) => {
   $('#newFolderForm').attr('data-id', 'null')
   messageModal('Save', 'success')
 }
+
 const requestFolderCreateFail = (response) => {
   const responseBody = response.responseJSON
   // console.log(responseBody)
   messageModal(Object.keys(responseBody)[0] + ' ' + responseBody.name[0], 'fail')
 }
+
 const deleteFolderPrompt = (id) => {
   const parentFolderName = $('#folder-name-' + id).text()
   const prompt = 'Are you sure to remove this folder? '
@@ -200,6 +203,7 @@ const deleteFolderPrompt = (id) => {
   $('#removeFolderModal').attr('data-id', id)
   $('#removeFolderModal').modal('toggle')
 }
+
 const requestFolderDeleteSuccess = (response, id) => {
   // console.log('id: ', id)
   const index = store.folders.map(folder => folder.id).indexOf(id)
@@ -209,14 +213,17 @@ const requestFolderDeleteSuccess = (response, id) => {
   $('#removeFolderModal').modal('toggle')
   messageModal('Deleted', 'success')
 }
+
 const requestFolderDeleteFail = (response) => {
   messageModal('Fail to Delete', 'fail')
 }
+
 const editFolderPrompt = (id, name) => {
   $('#editFolderModal').attr('data-id', id)
   $('#editFolderModal .edit-form-input-name').attr('value', name)
   $('#editFolderModal').modal('toggle')
 }
+
 const requestUpdateFolderSuccess = (response, id) => {
   $('#editFolderModal').modal('toggle')
   const folder = response.folder
@@ -233,6 +240,7 @@ const requestUpdateFolderSuccess = (response, id) => {
   // console.log(store.folders)
   messageModal('Save', 'success')
 }
+
 const requestUpdateFolderFail = (response) => {
   messageModal('Fail to Save', 'fail')
 }
@@ -249,6 +257,7 @@ const appendBookmarksToFolder = (id) => {
     $('#folder-bookmarks-' + id).html(bookmarksTemplateHtml)
   }
 }
+
 const onCreateRootBookmark = () => {
   // id for appending to when created
   const EditBookmarkHtml = EditbookmarkTemplate({
@@ -259,6 +268,7 @@ const onCreateRootBookmark = () => {
   $('#newBookmarkModal').find('.modal-body').html(EditBookmarkHtml)
   $('#newBookmarkModal').modal('toggle')
 }
+
 const onCreateRootFolder = () => {
   $('#newFolderForm').attr('data-id', null)
   $('#newFolderForm legend').text('')

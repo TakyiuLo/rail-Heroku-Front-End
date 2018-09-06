@@ -92,16 +92,19 @@ const onGetAll = (event) => {
   onGetAllBookmarks(event)
   onGetAllFolders(event)
 }
+
 const requestFolderIndexSuccess = (response) => {
   store.folders = JSON.parse(JSON.stringify(response.folders))
   return response
 }
+
 const onGetAllFolders = (event) => {
   api.requestFoldersIndex()
     .then(requestFolderIndexSuccess)
     .then(ui.requestFoldersIndexSuccess)
     .catch(ui.requestFoldersIndexFail)
 }
+
 const appendSubFoldersBookmarks = (event) => {
   // console.log('who:', $(event.target))
   const exceptions = ['btn', 'oi']
@@ -122,6 +125,7 @@ const onCreateFolderPrompt = (event) => {
   const id = $(event.target).closest('.folder').attr('data-id')
   ui.newFolderPrompt(id)
 }
+
 const onCreateFolder = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -138,10 +142,12 @@ const onCreateFolder = (event) => {
     .then(ui.requestFolderCreateSuccess)
     .catch(ui.requestFolderCreateFail)
 }
+
 const onDeleteFolderPrompt = (event) => {
   const id = parseInt($(event.target).closest('.folder').attr('data-id'), 10)
   ui.deleteFolderPrompt(id)
 }
+
 const onRemoveFolder = (event) => {
   event.preventDefault()
   const id = $('#removeFolderModal').attr('data-id')
@@ -152,11 +158,13 @@ const onRemoveFolder = (event) => {
     })
     .catch(ui.requestFolderDeleteFail)
 }
+
 const onEditFolderPrompt = (event) => {
   const id = parseInt($(event.target).closest('.folder').attr('data-id'), 10)
   const name = $('#folder-name-' + id).text()
   ui.editFolderPrompt(id, name)
 }
+
 const onUpdateFolder = (event) => {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -168,9 +176,11 @@ const onUpdateFolder = (event) => {
     })
     .catch(ui.requestUpdateFolderFail)
 }
+
 const onCreateRootBookmark = (event) => {
   ui.onCreateRootBookmark()
 }
+
 const onCreateRootFolder = (event) => {
   ui.onCreateRootFolder()
 }

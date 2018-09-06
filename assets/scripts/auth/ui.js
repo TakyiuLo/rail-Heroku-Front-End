@@ -57,7 +57,7 @@ const signOutSuccess = function () {
     $('.state-folders').addClass('d-none')
     $('.state-bookmarks').removeClass('diy-slide-out')
     $('.state-folders').removeClass('diy-slide-out')
-    $('.state-credientials').removeClass('d-none')
+    $('.state-credientials').removeClass('d-none', 'diy-slide-in')
     $('.state-credientials').addClass('diy-slide-in')
   }, 400)
 
