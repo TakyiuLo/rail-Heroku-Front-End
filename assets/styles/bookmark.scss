@@ -48,3 +48,15 @@
     padding-right: 15px;
   }
 }
+
+@media only screen and (max-width: 380px) {
+  // Make URL to scrollable when under 380px
+  .bookmark-header {
+    & p {
+      overflow-x: scroll;
+      &::-webkit-scrollbar {
+        height: 0px;
+      }
+    }
+  }
+}
