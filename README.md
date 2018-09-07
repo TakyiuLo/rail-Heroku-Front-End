@@ -1,16 +1,16 @@
 # Bookmarks Full Stack Project
 ## Summary
-For training purposes, this part of website is used as front-end giving a simple
+For training purposes, this part of the website is used as front-end giving a simple
 user interfaces.
 
 ## Idea
 Well, I was browsing my Chrome bookmarks and I found I didn't know what most of
-are for so I created this website. Bookmarks is for creating a bookmark page that
-I can put descriptions along with title.
+are for so I created this website. Bookmarks are for creating a bookmark page that
+I can put descriptions along with a title.
 
 ## Objective:
 - Demonstration of my ability to create a full stack project 
-- Reponseive web design
+- Responsive web design
 - CRUD actions
 - Use Ruby on Rails
 
@@ -40,10 +40,10 @@ I can add a bookmark record.
 I can edit my bookmark record.
 I can change my title.
 I can change my description.
-I can change my url.
+I can change my URL.
 
 ## Version II
-Version 2 has a simpole UI to CRUD bookmarks and folders.
+Version 2 has a simple UI to CRUD bookmarks and folders.
 
 ## Users Stories:
 - Folders
@@ -53,5 +53,10 @@ Version 2 has a simpole UI to CRUD bookmarks and folders.
 - As a user, I can delete folders.
 - As a user, I want a message of my actions.
 
-## Back-End
-To back-end: [Back-End repo](https://github.com/TakyiuLo/rail-Heroku-Back-End)
+## Repo and Deployment
+<!-- [Front-end repo](https://github.com/TakyiuLo/rail-Heroku-Front-End) -->
+[Front-end Deployment](https://takyiulo.github.io/rail-Heroku-Front-End)
+[bookmarks-page]: https://takyiulo.github.io/rail-Heroku-Front-End
+[Back-end Repo](https://github.com/TakyiuLo/rail-Heroku-Back-End)
+[Back-end Deployment V1](https://rail-heroku-project-temple.herokuapp.com/bookmarks)
+[Back-end Deployment V2](https://rail-heroku-project-temple.herokuapp.com/folders)
