@@ -20,7 +20,7 @@ I can put descriptions along with a title.
 - Bootstrap 4, Iconics
 
 ## Wireframe:
-[Imgur](https://i.imgur.com/jiGrLbP.png)
+- [Wireframe](https://i.imgur.com/jiGrLbP.png)
 
 ## Version I
 Version 1 has a simple UI to CRUD only bookmarks.
