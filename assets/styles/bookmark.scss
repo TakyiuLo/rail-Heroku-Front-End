@@ -17,6 +17,11 @@
       margin-bottom: 0px;
       margin-right: auto;
       color: #fff;
+      // fix for long url links
+      overflow-x: scroll;
+      &::-webkit-scrollbar {
+        height: 0px;
+      }
     }
     & .edit-btn {
       float: right;
@@ -46,17 +51,5 @@
     box-shadow: 0 2px 2px #ccc;
     padding-left: 15px;
     padding-right: 15px;
-  }
-}
-
-@media only screen and (max-width: 380px) {
-  // Make URL to scrollable when under 380px
-  .bookmark-header {
-    & p {
-      overflow-x: scroll;
-      &::-webkit-scrollbar {
-        height: 0px;
-      }
-    }
   }
 }
