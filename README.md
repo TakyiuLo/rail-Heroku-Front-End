@@ -8,6 +8,15 @@ Well, I was browsing my Chrome bookmarks and I found I didn't know what most of
 are for so I created this website. Bookmarks are for creating a bookmark page that
 I can put descriptions along with a title.
 
+## Plan
+My plan is to create a back-end first because it matters the most. Once I finished
+the backend, I test it with curl scripts. And after all that, I move on to the 
+front end to work on the minimum viable product. At last with the MVP, I styled everything.
+
+## Problem-solving strategy
+I used Google and Stack-Overflow to find answers to my problems. Then if I couldn't find one
+I went on to the queue stack to post my problems.
+
 ## Objective:
 - Demonstration of my ability to create a full stack project 
 - Responsive web design
